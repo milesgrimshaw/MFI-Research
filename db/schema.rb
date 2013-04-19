@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418233353) do
+ActiveRecord::Schema.define(:version => 20130419033406) do
 
   create_table "borrowers", :force => true do |t|
     t.string  "image"
     t.string  "name"
     t.float   "rating"
     t.integer "played_count"
+    t.integer "kiva_id"
   end
 
   create_table "results", :force => true do |t|
