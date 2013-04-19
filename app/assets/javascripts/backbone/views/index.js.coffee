@@ -9,6 +9,7 @@ class TrustOrBust.Views.Index extends Backbone.View
   el: 'body'
   
   initialize: ->
+    $('body').on("keyup", @key)
     @render()
     
   renderGame: =>
@@ -18,32 +19,28 @@ class TrustOrBust.Views.Index extends Backbone.View
     for i in [0..31]
       $(".background").append(@bgTemplate(url: 'http://www.kiva.org/img/200/259.jpg'))
      
-  render: ->
-    $('body').on("keyup", @key)
+  render: =>
     $(@el).html(@template)
-    @renderBackground()
-  
-  events:
-    "click #new-game" : "newGame"
-    "click .player" : "select"
-  
-  newGame: =>
     @game = new TrustOrBust.Models.Game
     @game.url = "/games/new"
     @game.fetch success: (data) =>
       @renderGame()
   
+  events:
+    "click #new-game" : "render"
+    "click .player" : "select"    
+  
   select: (event) ->
     id = $(event.target).data("id")
     id = $(event.target).parent().data("id") unless id
-    @game.decideWinner(id).then @newGame
+    @game.decideWinner(id).then @render
   
   key: (event) =>
     if event.keyCode == 39
       # Right
       id = @game.get("right").id
-      @game.decideWinner(id).then @newGame
+      @game.decideWinner(id).then @render
     else if event.keyCode == 37
       # Left
       id = @game.get("left").id
-      @game.decideWinner(id).then @newGame
+      @game.decideWinner(id).then @render
