@@ -12,13 +12,14 @@ class TrustOrBust.Views.Index extends Backbone.View
     $('body').on("keyup", @key)
     @render()
     
-  renderGame: =>
+  renderGame: ->
     $("#game").html(@gameTemplate(game: @game))
+    loadImage = _.delay(@loadImage, 400)
+    $(".player img").on("load", loadImage)
   
-  renderBackground: ->
-    for i in [0..31]
-      $(".background").append(@bgTemplate(url: 'http://www.kiva.org/img/200/259.jpg'))
-     
+  loadImage: ->
+    $(".player").removeClass("loading")     
+    
   render: =>
     $(@el).html(@template)
     @game = new TrustOrBust.Models.Game

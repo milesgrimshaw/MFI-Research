@@ -86,6 +86,7 @@ body {
 // Game
 .player {
   width: 433px;
+  min-height: 200px;
   display: inline-block;
   margin: 15px;
   height: auto;
@@ -103,11 +104,23 @@ body {
   &:active {
     opacity: 0.5;
   }
+  &.loading {
+    background-image: url('/assets/loader.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    .image {
+      opacity: 0;
+      height: 0px;
+    }
+  }
   .image {
     width: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 1;
+    height: auto;
+    @include transition(0.2s);
   }
 }
 h1 {
