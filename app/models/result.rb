@@ -1,6 +1,6 @@
 class Result < ActiveRecord::Base
   
-  attr_accessible :left_id, :left_count, :right_id, :right_count
+  attr_accessible :left_id, :right_id, :winner_id
   
   belongs_to :left, :class_name => "Borrower"
   belongs_to :right, :class_name => "Borrower"
