@@ -33,16 +33,22 @@ class TrustOrBust.Views.Index extends Backbone.View
     $("#game").html(@aboutTemplate())
   
   # Leader board
+  loadBoard: ->
+    $("#leaders").removeClass("loading")
+  
   renderBoard: =>
     $("#game").html(@boardTemplate())
     @leaders = new TrustOrBust.Collections.Borrowers
     @leaders.url = "/leaders"
     @leaders.fetch success: (data) =>
+      load = _.after(@leaders.length, @loadBoard)
       for borrower in data.models
-        @addBorrower(borrower)
+        $("#leaders").append(@leaderTemplate(borrower: borrower))
+        _.delay(load, 500)
   
   addBorrower: (borrower) ->
-    $("#game").append(@leaderTemplate(borrower: borrower))
+    $("#leaders").append(@leaderTemplate(borrower: borrower))
+    @loadBoard()
       
   renderGame: ->
     $("#game").html(@gameTemplate(game: @game))

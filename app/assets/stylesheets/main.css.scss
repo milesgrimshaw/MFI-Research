@@ -171,6 +171,17 @@ h1 {
 $leader-width: 188px;
 $leader-height: 120px;
 
+#leaders {
+  min-height: 300px;
+  &.loading {
+    background-image: url("/assets/loader.gif");
+    background-position: center 100px;
+    background-repeat: no-repeat;
+    .leader {
+      opacity: 0;
+    }
+  }
+}
 .leader-head {
   font-size: 30px;
   line-height: 50px;
