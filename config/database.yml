@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: trustorbust_development
+  pool: 5
+  username: trustorbust
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: trustorbust_test
+  pool: 5
+  username: trustorbust
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: trustorbust_production
+  pool: 5
+  username: trustorbust
+  password:

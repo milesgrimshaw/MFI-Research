@@ -1,0 +1,35 @@
+//Fonts Mixins
+@mixin HN-Light {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: lighter;
+}
+@mixin HN-Bold {
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: bolder;
+}
+@mixin HN-Regular {
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: normal;
+}
+
+@mixin calc($attribute, $x, $y) {
+  #{$attribute}: -moz-calc(#{$x} - #{$y});
+  #{$attribute}: -webkit-calc(#{$x} - #{$y});
+  #{$attribute}: -o-calc(#{$x} - #{$y});
+  #{$attribute}: calc(#{$x} - #{$y});
+}
+
+@mixin transition($x) {
+  transition: #{$x};
+  -moz-transition: #{$x};
+  -webkit-transition: #{$x};
+  -o-transition: #{$x};
+}
+
+@mixin gradient($x, $y) {
+  background-image: linear-gradient(bottom, $x, $y);
+  background-image: -o-linear-gradient(bottom, $x, $y);
+  background-image: -moz-linear-gradient(bottom, $x, $y);
+  background-image: -webkit-linear-gradient(bottom, $x, $y);
+  background-image: -ms-linear-gradient(bottom, $x, $y);
+}
