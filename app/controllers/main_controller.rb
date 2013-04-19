@@ -4,10 +4,14 @@ class MainController < ApplicationController
   end
   
   def generate_players
-    ids = Borrower.all.map{|b| b.id}.shuffle.shuffle # Yeah, that's two shuffles
+    l = Random.rand(Borrower.count)
+    r = Random.rand(Borrower.count)
+    while l == r
+      r = Random.rand(Borrower.count)
+    end
     game = Result.new
-    game.left = Borrower.find(ids[0])
-    game.right = Borrower.find(ids[1])
+    game.left = Borrower.find(l)
+    game.right = Borrower.find(r)
     game.save
     render json: game.to_json(:include => ["left", "right"])
   end
