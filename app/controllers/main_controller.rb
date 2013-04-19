@@ -4,14 +4,15 @@ class MainController < ApplicationController
   end
   
   def generate_players
-    l = Random.rand(Borrower.count)
-    r = Random.rand(Borrower.count)
+    ids = Borrower.all.map{|b| b.id}
+    l = Random.rand(ids.count)
+    r = Random.rand(ids.count)
     while l == r
-      r = Random.rand(Borrower.count)
+      r = Random.rand(ids.count)
     end
     game = Result.new
-    game.left = Borrower.find(l)
-    game.right = Borrower.find(r)
+    game.left = Borrower.find(ids[l])
+    game.right = Borrower.find(ids[r])
     game.save
     render json: game.to_json(:include => ["left", "right"])
   end
