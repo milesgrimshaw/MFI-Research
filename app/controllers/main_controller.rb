@@ -4,7 +4,7 @@ class MainController < ApplicationController
   end
   
   def generate_players
-    ids = Borrower.all.map{|b| b.id}.shuffle
+    ids = Borrower.all.map{|b| b.id}.shuffle.shuffle # Yeah, that's two shuffles
     game = Result.new
     game.left = Borrower.find(ids[0])
     game.right = Borrower.find(ids[1])

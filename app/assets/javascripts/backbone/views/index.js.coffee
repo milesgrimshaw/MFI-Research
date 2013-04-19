@@ -41,9 +41,9 @@ class TrustOrBust.Views.Index extends Backbone.View
   key: (event) =>
     if event.keyCode == 39
       # Right
-      id = @game.get("right")
+      id = @game.get("right").id
       @game.decideWinner(id).then @newGame
     else if event.keyCode == 37
       # Left
-      id = @game.get("left")
+      id = @game.get("left").id
       @game.decideWinner(id).then @newGame
