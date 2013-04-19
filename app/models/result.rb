@@ -4,6 +4,7 @@ class Result < ActiveRecord::Base
   
   belongs_to :left, :class_name => "Borrower"
   belongs_to :right, :class_name => "Borrower"
+  belongs_to :winner, :class_name => "Borrower"
   
   # Returns winner of game
   def winner

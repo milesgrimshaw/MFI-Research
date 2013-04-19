@@ -35,4 +35,10 @@ class MainController < ApplicationController
     render json: count
   end
   
+  def leaders
+    borrowers = Borrower.all.sort_by{|b| -b.wins_count}
+    borrowers = borrowers[0..100]
+    render json: borrowers.to_json(:include => {:wins => {:only => ["id"]}})
+  end
+  
 end

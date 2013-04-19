@@ -5,6 +5,7 @@ class TrustOrBust.Routers.Router extends Backbone.Router
      
   routes:
     "about"     : "about"
+    "board"     : "board"
     ".*"        : "index"
   
   index: ->
@@ -12,3 +13,6 @@ class TrustOrBust.Routers.Router extends Backbone.Router
   
   about: ->
     @view.renderAbout()
+  
+  board: ->
+    @view.renderBoard()

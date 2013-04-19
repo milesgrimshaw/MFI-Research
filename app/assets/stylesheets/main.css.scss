@@ -41,6 +41,7 @@ body {
     font-size: 30px;
     float: right;
     line-height: 70px;
+    text-decoration: none;
     color: #dadada;
     @include transition(0.2s);
     &:hover {
@@ -164,4 +165,47 @@ h1 {
 }
 .left {
   margin-right: 0px;
+}
+
+// Leader board
+$leader-width: 188px;
+$leader-height: 120px;
+
+.leader-head {
+  font-size: 30px;
+  line-height: 50px;
+  @include HN-Bold;
+  text-align: center;
+}
+.leader {
+  width: $leader-width;
+  height: $leader-height;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin-bottom: 10px;
+  img {
+    width: $leader-width;
+  }
+  .leader-count {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    font-size: 55px;
+    @include HN-Light;
+    line-height: $leader-height;
+    top: 0;
+    height: $leader-height;
+    color: $blue;
+    background: white;
+    opacity: 0.7;
+    @include transition(0.2s);
+  }
+  &:hover {
+    .leader-count {
+      opacity: 0;
+    }
+  }
 }

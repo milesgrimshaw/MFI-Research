@@ -6,6 +6,8 @@ class TrustOrBust.Views.Index extends Backbone.View
   bgTemplate: JST["backbone/templates/bg"]
   gameTemplate: JST["backbone/templates/game"]
   aboutTemplate: JST["backbone/templates/about"]
+  boardTemplate: JST["backbone/templates/board"]
+  leaderTemplate: JST["backbone/templates/leader"]
 
   el: 'body'
   
@@ -15,7 +17,7 @@ class TrustOrBust.Views.Index extends Backbone.View
     @renderCount()
   
   setCount: (count) ->
-    $(".count").html count
+    $(".count span").html count
     
   renderCount: =>
     $.ajax
@@ -24,10 +26,23 @@ class TrustOrBust.Views.Index extends Backbone.View
        url: '/count'
        success: (data) =>
          @setCount(data)
-         _.delay(@renderCount, 1000)
+         _.delay(@renderCount, 5000)
   
+  # About Page
   renderAbout: ->
     $("#game").html(@aboutTemplate())
+  
+  # Leader board
+  renderBoard: =>
+    $("#game").html(@boardTemplate())
+    @leaders = new TrustOrBust.Collections.Borrowers
+    @leaders.url = "/leaders"
+    @leaders.fetch success: (data) =>
+      for borrower in data.models
+        @addBorrower(borrower)
+  
+  addBorrower: (borrower) ->
+    $("#game").append(@leaderTemplate(borrower: borrower))
       
   renderGame: ->
     $("#game").html(@gameTemplate(game: @game))
