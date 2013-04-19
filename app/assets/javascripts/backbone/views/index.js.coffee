@@ -14,11 +14,14 @@ class TrustOrBust.Views.Index extends Backbone.View
     
   renderGame: ->
     $("#game").html(@gameTemplate(game: @game))
-    loadImage = _.delay(@loadImage, 400)
-    $(".player img").on("load", loadImage)
+    $('<img class="image" src="' + @game.get("right").image + '"/>').load( @loadRightImage )
+    $('<img class="image" src="' + @game.get("left").image + '"/>').load( @loadLeftImage )
   
-  loadImage: ->
-    $(".player").removeClass("loading")     
+  loadRightImage: ->
+    $(".player.right").removeClass("loading")
+  
+  loadLeftImage: ->
+    $(".player.left").removeClass("loading")
     
   render: =>
     $(@el).html(@template)
