@@ -30,4 +30,9 @@ class MainController < ApplicationController
     render json: game
   end
   
+  def count
+    count = Result.count
+    render json: count
+  end
+  
 end

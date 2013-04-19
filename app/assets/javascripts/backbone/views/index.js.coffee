@@ -5,13 +5,30 @@ class TrustOrBust.Views.Index extends Backbone.View
   template: JST["backbone/templates/index"]
   bgTemplate: JST["backbone/templates/bg"]
   gameTemplate: JST["backbone/templates/game"]
+  aboutTemplate: JST["backbone/templates/about"]
 
   el: 'body'
   
   initialize: ->
     $('body').on("keyup", @key)
-    @render()
+    $(@el).html(@template)
+    @renderCount()
+  
+  setCount: (count) ->
+    $(".count").html count
     
+  renderCount: =>
+    $.ajax
+       type: 'GET'
+       dataType: 'json'
+       url: '/count'
+       success: (data) =>
+         @setCount(data)
+         _.delay(@renderCount, 1000)
+  
+  renderAbout: ->
+    $("#game").html(@aboutTemplate())
+      
   renderGame: ->
     $("#game").html(@gameTemplate(game: @game))
     $('<img class="image" src="' + @game.get("right").image + '"/>').load( @loadRightImage )
@@ -24,7 +41,6 @@ class TrustOrBust.Views.Index extends Backbone.View
     $(".player.left").removeClass("loading")
     
   render: =>
-    $(@el).html(@template)
     @game = new TrustOrBust.Models.Game
     @game.url = "/games/new"
     @game.fetch success: (data) =>
