@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 == Microfinance Research
 
 This is intended for research purposes to understand the correlation between charachteristics of microfinances borrowers and the lending and repayment outcomes. 
 
 Further details to come...
+=======
+==What is Trust or Bust?
+
+Trust of Bust pulls in photos from Kiva borrowers, and asks the public to compare them. We are interested in finding a statistical connection between certain characteristics of a borrower's photo and his or her eventual loan amount and payback rate.
+
+==How does it work?
+
+Data on Kiva loans are provided to the public via the Kiva API, and we use the API to gather a growing repository of borrower photos. Each photo is matched with a loan record in our database, and we perform basic statistical analysis on the 'trustworthiness' of each photo and the data attached to that loan. Initially, the Elo Rating System, an algorithm used primarily for chess, is being utilized to 'rank' the borrowers.
+>>>>>>> 0bdd7e466fb1972a91559b61580803f933d51390
