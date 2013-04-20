@@ -11,4 +11,12 @@ class Result < ActiveRecord::Base
     Borrower.find(self.winner_id)
   end
   
+  def exp_left
+    1 / (1 + 10**(((self.right.rating) - (self.left.rating)) / 400))
+  end
+  
+  def exp_right
+    1 / (1 + 10**(((self.left.rating) - (self.right.rating)) / 400))
+  end
+  
 end

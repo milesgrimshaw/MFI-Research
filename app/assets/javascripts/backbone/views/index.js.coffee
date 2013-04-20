@@ -36,10 +36,21 @@ class TrustOrBust.Views.Index extends Backbone.View
   loadBoard: ->
     $("#leaders").removeClass("loading")
   
-  renderBoard: =>
+  setActive: (type) ->
+    $("#game h1 a").removeClass("inactive")
+    if type == "unpopular"
+      $("#game h1 #popular").addClass "inactive"
+    else
+      $("#game h1 #unpopular").addClass "inactive"
+    
+  renderBoard: (type) =>
     $("#game").html(@boardTemplate())
+    @setActive(type)
     @leaders = new TrustOrBust.Collections.Borrowers
-    @leaders.url = "/leaders"
+    if type == "unpopular"
+      @leaders.url = "/losers"
+    else
+      @leaders.url = "/leaders"
     @leaders.fetch success: (data) =>
       load = _.after(@leaders.length, @loadBoard)
       for borrower in data.models

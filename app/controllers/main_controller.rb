@@ -17,15 +17,26 @@ class MainController < ApplicationController
     render json: game.to_json(:include => ["left", "right"])
   end
   
+  # Decide games based on Elo Rating System
   def decide_game
     game = Result.find(params[:id])
     game.winner_id = params[:winner_id]
     game.save
     left = game.left
     left.played_count += 1
+    if game.winner_id == left.id
+      left.rating = left.rating + 32*(1 - game.exp_left)
+    else
+      left.rating = left.rating + 32*(0 - game.exp_left)
+    end
     left.save
     right = game.right
     right.played_count += 1
+    if game.winner_id == right.id
+      right.rating = right.rating + 32*(1 - game.exp_right)
+    else
+      right.rating = right.rating + 32*(0 - game.exp_right)
+    end
     right.save
     render json: game
   end
@@ -36,9 +47,15 @@ class MainController < ApplicationController
   end
   
   def leaders
-    borrowers = Borrower.all.sort_by{|b| -b.wins_count}
+    borrowers = Borrower.all.sort_by{|b| -b.rating}
     borrowers = borrowers[0..99]
     render json: borrowers.to_json(:include => {:wins => {:only => ["id"]}})
   end
+  
+  def losers
+    borrowers = Borrower.all.sort_by{|b| b.rating}
+    borrowers = borrowers[0..99]
+    render json: borrowers.to_json(:include => {:wins => {:only => ["id"]}})
+  end 
   
 end

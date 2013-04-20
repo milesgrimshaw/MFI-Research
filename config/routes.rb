@@ -6,5 +6,6 @@ TrustOrBust::Application.routes.draw do
   match "/games/:id/winner/:winner_id" => "main#decide_game"
   match "/count" => "main#count"
   match "/leaders" => "main#leaders"
+  match "/losers" => "main#losers"
   
 end

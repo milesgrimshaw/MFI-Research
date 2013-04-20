@@ -1,4 +1,4 @@
 <div class="leader">
   <img class="leader-image" src="<%= borrower.get('image') %>"/>
-  <div class="leader-count"><%= borrower.get("wins").length %></div>
+  <div class="leader-count"><%= Math.floor(borrower.get("rating")) %></div>
 </div>

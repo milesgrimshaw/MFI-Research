@@ -4,9 +4,11 @@ class TrustOrBust.Routers.Router extends Backbone.Router
     @view = new TrustOrBust.Views.Index()
      
   routes:
-    "about"     : "about"
-    "board"     : "board"
-    ".*"        : "index"
+    "about"           : "about"
+    "board"           : "board"
+    "board/popular"   : "board"
+    "board/unpopular" : "unpopular"
+    ".*"              : "index"
   
   index: ->
     @view.render()
@@ -15,4 +17,7 @@ class TrustOrBust.Routers.Router extends Backbone.Router
     @view.renderAbout()
   
   board: ->
-    @view.renderBoard()
+    @view.renderBoard("popular")
+  
+  unpopular: ->
+    @view.renderBoard("unpopular")

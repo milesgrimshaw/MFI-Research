@@ -182,11 +182,18 @@ $leader-height: 120px;
     }
   }
 }
-.leader-head {
-  font-size: 30px;
-  line-height: 50px;
-  @include HN-Bold;
-  text-align: center;
+h1 a {
+  border-bottom: 2px solid;
+  text-decoration: none;
+  color: black;
+  @include transition(0.2s);
+  &.inactive {
+    @include HN-Light;
+    border-bottom: 0;
+    &:hover {
+      color: $blue;
+    }
+  }
 }
 .leader {
   width: $leader-width;
