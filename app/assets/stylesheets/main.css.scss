@@ -135,6 +135,8 @@ body {
   border: 1px solid #dadada;
   border-radius: 5px;
   @include transition(0.2s);
+  background-position: center;
+  background-repeat: no-repeat;
   &:hover {
     opacity: 0.8;
     border: 1px solid $dark-blue;
