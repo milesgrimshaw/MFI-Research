@@ -85,14 +85,17 @@ class TrustOrBust.Views.Index extends Backbone.View
   select: (event) ->
     id = $(event.target).data("id")
     id = $(event.target).parent().data("id") unless id
+    $(".player").addClass "loading"
     @game.decideWinner(id).then @render
   
   key: (event) =>
     if event.keyCode == 39
       # Right
       id = @game.get("right").id
+      $(".player").addClass "loading"
       @game.decideWinner(id).then @render
     else if event.keyCode == 37
       # Left
       id = @game.get("left").id
+      $(".player").addClass "loading"
       @game.decideWinner(id).then @render
