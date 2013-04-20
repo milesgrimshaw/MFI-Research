@@ -121,6 +121,30 @@ body {
   }
 }
 
+// About Page
+#game .about {
+  width: 600px;
+  margin: auto;
+  h1 {
+    @include HN-Regular;
+    font-size: 25px;
+    text-align: left;
+    border-bottom: 1px solid $blue;
+    color: $blue;
+  }
+  p {
+    @include HN-Light;
+    font-size: 16px;
+    line-height: 22px;
+    a {
+      color: $blue;
+      @include transition(0.2s);
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+}
 // Game
 .player {
   width: 433px;
