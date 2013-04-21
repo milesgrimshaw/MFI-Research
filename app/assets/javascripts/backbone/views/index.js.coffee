@@ -15,10 +15,10 @@ class TrustOrBust.Views.Index extends Backbone.View
     $('body').on("keyup", @key)
     $(@el).html(@template)
     @renderCount()
-    # @q = true for "lend it" and false for "give it away"
+    # true for "lend it" and false for "give it"
     @question = "lend it"
     if Math.random() >= 0.5
-      @question = "give it away"
+      @question = "give it"
   
   setCount: (count) ->
     $(".count span").html count
@@ -97,7 +97,7 @@ class TrustOrBust.Views.Index extends Backbone.View
       # Right
       id = @game.get("right").id
       $(".player").addClass "loading"
-      @game.decideWinner(id).then @render
+      @game.decideWinner(id, @question).then @render
     else if event.keyCode == 37
       # Left
       id = @game.get("left").id
