@@ -15,6 +15,8 @@ class TrustOrBust.Views.Index extends Backbone.View
     $('body').on("keyup", @key)
     $(@el).html(@template)
     @renderCount()
+    @renderAbtext()
+
   
   setCount: (count) ->
     $(".count span").html count
@@ -27,6 +29,13 @@ class TrustOrBust.Views.Index extends Backbone.View
        success: (data) =>
          @setCount(data)
          _.delay(@renderCount, 5000)
+
+  setAbtext: (abtext) ->
+    @setCount(abtext)
+
+  renderAbtext: =>
+      @setAbtext(('/abtext').read)
+   
   
   # About Page
   renderAbout: ->
@@ -65,6 +74,7 @@ class TrustOrBust.Views.Index extends Backbone.View
     $("#game").html(@gameTemplate(game: @game))
     $('<img class="image" src="' + @game.get("right").image + '"/>').load( @loadRightImage )
     $('<img class="image" src="' + @game.get("left").image + '"/>').load( @loadLeftImage )
+
   
   loadRightImage: ->
     $(".player.right").removeClass("loading")

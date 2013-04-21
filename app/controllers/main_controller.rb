@@ -2,6 +2,17 @@ class MainController < ApplicationController
   
   def index
   end
+
+  def abtext
+    rand = rand(2)
+    v1 = "#{rand} If you had $25, who would you give it away to?"
+    v2 = "#{rand} If you had $25, who would you lend it to?"
+    abtext = v1
+    if rand == 1
+      abtext = v2
+    end
+    render json: abtext
+  end 
   
   def generate_players
     ids = Borrower.all.map{|b| b.id}

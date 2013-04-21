@@ -7,5 +7,5 @@ TrustOrBust::Application.routes.draw do
   match "/count" => "main#count"
   match "/leaders" => "main#leaders"
   match "/losers" => "main#losers"
-  
+  match "/abtext" => "main#abtext"  
 end
