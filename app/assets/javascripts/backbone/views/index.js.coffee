@@ -15,6 +15,10 @@ class TrustOrBust.Views.Index extends Backbone.View
     $('body').on("keyup", @key)
     $(@el).html(@template)
     @renderCount()
+    # @q = true for "lend it" and false for "give it away"
+    @question = "lend it"
+    if Math.random() >= 0.5
+      @question = "give it away"
   
   setCount: (count) ->
     $(".count span").html count
@@ -62,7 +66,7 @@ class TrustOrBust.Views.Index extends Backbone.View
     @loadBoard()
       
   renderGame: ->
-    $("#game").html(@gameTemplate(game: @game))
+    $("#game").html(@gameTemplate(game: @game, question: @question))
     $('<img class="image" src="' + @game.get("right").image + '"/>').load( @loadRightImage )
     $('<img class="image" src="' + @game.get("left").image + '"/>').load( @loadLeftImage )
   
@@ -86,7 +90,7 @@ class TrustOrBust.Views.Index extends Backbone.View
     id = $(event.target).data("id")
     id = $(event.target).parent().data("id") unless id
     $(".player").addClass "loading"
-    @game.decideWinner(id).then @render
+    @game.decideWinner(id, @question).then @render
   
   key: (event) =>
     if event.keyCode == 39
@@ -98,4 +102,4 @@ class TrustOrBust.Views.Index extends Backbone.View
       # Left
       id = @game.get("left").id
       $(".player").addClass "loading"
-      @game.decideWinner(id).then @render
+      @game.decideWinner(id, @question).then @render

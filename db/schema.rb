@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419033406) do
+ActiveRecord::Schema.define(:version => 20130421191150) do
 
   create_table "borrowers", :force => true do |t|
     t.string  "image"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130419033406) do
     t.integer "left_id"
     t.integer "right_id"
     t.integer "winner_id"
+    t.boolean "question"
   end
 
 end
