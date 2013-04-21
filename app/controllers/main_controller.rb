@@ -32,6 +32,7 @@ class MainController < ApplicationController
   def decide_game
     game = Result.find(params[:id])
     game.winner_id = params[:winner_id]
+    game.question = params[:question]
     game.save
     left = game.left
     left.played_count += 1

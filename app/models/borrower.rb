@@ -5,13 +5,14 @@ class Borrower < ActiveRecord::Base
   has_many :right_results, :foreign_key => "right_id", :class_name => "Result"
   has_many :wins, :foreign_key => "winner_id", :class_name => "Result"
   
-  before_create :set_played_count
+  before_create :set_elo
   
   validates_presence_of :kiva_id, :image
   validates_uniqueness_of :kiva_id, :image
   
-  def set_played_count
+  def set_elo
     self.played_count = 0
+    self.rating = 1400
   end
   
   # Returns all results
