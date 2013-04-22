@@ -15,16 +15,10 @@ class TrustOrBust.Views.Index extends Backbone.View
     $('body').on("keyup", @key)
     $(@el).html(@template)
     @renderCount()
-<<<<<<< HEAD
-    @renderAbtext()
-
-=======
     # true for "lend it" and false for "give it"
     @question = "lend it"
     if Math.random() >= 0.5
       @question = "give it"
->>>>>>> 78e8b4eb6a69d165126c8469c78b25167521b2d1
-  
   setCount: (count) ->
     $(".count span").html count
     

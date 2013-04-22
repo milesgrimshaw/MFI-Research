@@ -132,7 +132,7 @@ body {
     border-bottom: 1px solid $blue;
     color: $blue;
   }
-  p {
+  p, li {
     @include HN-Light;
     font-size: 16px;
     line-height: 22px;
